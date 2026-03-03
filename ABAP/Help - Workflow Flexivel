@@ -1,0 +1,52 @@
+Workflow Flexivel
+-------------------------------------------------------------------------------
+	https://www.youtube.com/watch?v=DjWucp2X9T0
+	https://www.youtube.com/watch?v=MQa4gMWlIic
+	
+	BLOG Buscar Agents for approving of work item
+	https://community.sap.com/t5/technology-blog-posts-by-members/determining-sap-flexible-workflow-agents-with-custom-responsibility-rules/ba-p/13558459
+	
+	0. REQUEST
+		S4DK959723       TCGK1001964  SMART-EB-PORTAL - BL2012 - WF Flex – OTC CCM Liquid Provisõe
+	
+	0. cRIAR badi implementation
+		Implementação de ampliação      Z_IM_RSM_BADI_STATIC_RULE
+		Implementação da BADI			Z_IM_LIQ_PROVISOES
+		Classe de implementação  		ZCL_IM_LIQ_PROVISOES
+	
+	1. Administrar regras de responsabilidade
+	https://vhklbs4dci.sap.klabin.net:44300/sap/bc/ui2/flp?sap-client=100&sap-language=PT#ResponsibilityRule-manage&/?sap-iapp-state--history=TASH3MDIQE8HPIBCPLFV9RR1FB3VHT4AL4MIM4M1W&sap-iapp-state=TASE4GC7WX4LWC5UGH21JXVFDYWESVHYSFVYBDSCM
+		WS02000445: ZZ1_CCM_AGENT
+		WS02000435: ZZ1_CCM_REBATES_AGENT
+			Parameter: condition_contract type I_CONDITIONCONTRACT.
+		WS01800145: ZZ1_CONTRATO_VENDAS
+	
+	2. Administrar contextos de responsabilidade
+	https://vhklbs4dci.sap.klabin.net:44300/sap/bc/ui2/flp?sap-client=100&sap-language=PT#ResponsibilityContext-manage&/?sap-iapp-state--history=TASELFP2MHFDZR3VX2ML266QZ2YTCYBGCC9BCRRQ2&sap-iapp-state=TASIJJVUPAU3T3RB4R5F3UBXF7C8G8T49MB55WOSY
+	
+		ZZ1_WS02000445=WS02000445
+		ZZ1_WS02000435=WS02000435
+		
+	3. Administrar workflows (Configurar WF Etapa)
+	https://vhklbs4dci.sap.klabin.net:44300/sap/bc/ui2/flp?sap-client=100&sap-language=PT#Workflow-showList
+	
+	4. testar
+		SWUE
+			Rebates
+				Objeto BUS2235
+				Evento TOBEAPPROVED
+				Receptor WS02000435
+		
+		SWI2_freq (analisar wf iniciado)
+			Rebates
+			
+			
+	N) Como HABILITAR MOSTRAR o botão GOS para transação standard.
+		BADI GOS_MULT_PUBLISH
+		https://community.sap.com/t5/technology-q-a/generic-object-services-gos-and-workflow-overview/qaq-p/7679104
+		APPEND '0000000145' 'cl_wlf_bwf_document_update' 'CL' to CT_LPORB.
+		
+		Onde:
+		CT_LPORB-INSTID='0000000145' 
+		CT_LPORB-TYPEID='cl_wlf_bwf_document_update' 
+		CT_LPORB-CATID='CL'.
